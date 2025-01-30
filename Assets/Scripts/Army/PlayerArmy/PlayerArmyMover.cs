@@ -1,8 +1,7 @@
-using System;
 using UnityEngine;
 
-namespace Units.PlayerUnits {
-    public class MovePlayerUnits : MonoBehaviour
+namespace Army.PlayerArmy {
+    public class PlayerArmyMover : MonoBehaviour
     {
         [SerializeField] private float _speed;
         [SerializeField] private float _speedForLateralMovement;
