@@ -1,9 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.Road
 {
     public class RoadGenerator : MonoBehaviour
     {
+        private List<RoadSegment> _roadSegments;
+
         [SerializeField] private RoadSegment _roadSegmentPrefab;
         [SerializeField] private Transform _spawnPoint;
 
@@ -20,10 +23,13 @@ namespace Assets.Scripts.Road
             for (int i = 0; i < _roadSegmentCount; i++)
             {
                 var newRoadSegment = Instantiate(_roadSegmentPrefab, _spawnPoint.position, Quaternion.identity);
+                _roadSegments.Add(newRoadSegment);
                 newRoadSegment.transform.parent = transform;
                 var newSpawnPointPosition = _spawnPoint.localPosition.x + segmentSize;
                 ChangeSpawnPointPosition(newSpawnPointPosition);
             }
+
+            _roadSegments[_roadSegments.Count - 1].IsLastSegment = true;
         }
 
         private void ChangeSpawnPointPosition(float newPostion = 0)
