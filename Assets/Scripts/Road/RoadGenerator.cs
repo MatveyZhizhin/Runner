@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Assets.Scripts.Road.SpawnOfObjects;
 
 namespace Assets.Scripts.Road
 {
     public class RoadGenerator : MonoBehaviour
     {
-        private List<RoadSegment> _roadSegments;
+        private List<RoadSegment> _roadSegments = new List<RoadSegment>();
 
         [SerializeField] private RoadSegment _roadSegmentPrefab;
         [SerializeField] private Transform _spawnPoint;
@@ -29,7 +30,7 @@ namespace Assets.Scripts.Road
                 ChangeSpawnPointPosition(newSpawnPointPosition);
             }
 
-            _roadSegments[_roadSegments.Count - 1].IsLastSegment = true;
+            
         }
 
         private void ChangeSpawnPointPosition(float newPostion = 0)
