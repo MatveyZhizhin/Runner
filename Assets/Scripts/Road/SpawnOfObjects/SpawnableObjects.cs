@@ -1,5 +1,5 @@
 
-namespace Assets.Scripts.Road.SpawnOfObjects
+namespace Road.SpawnOfObjects
 {
     public enum SpawnableObjects
     {

@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
-using Assets.Scripts.Road.SpawnOfObjects;
+using Road.SpawnOfObjects;
 
-namespace Assets.Scripts.Road
+namespace Road
 {
     public class RoadGenerator : MonoBehaviour
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Assets.Scripts.Road.SpawnOfObjects
+namespace Road.SpawnOfObjects
 {
     public class RoadSegment : MonoBehaviour
     {
@@ -32,7 +32,7 @@ namespace Assets.Scripts.Road.SpawnOfObjects
 
                 foreach (var spawnableObject in _spawnableObjects)
                 {               
-                    if (spawnableObject._objectType == newObjectType)
+                    if (spawnableObject.ObjectType == newObjectType)
                     {
                       var newObject = Instantiate(spawnableObject, spawnPoint.position, spawnableObject.transform.rotation);
                       newObject.transform.parent = transform;
@@ -45,7 +45,7 @@ namespace Assets.Scripts.Road.SpawnOfObjects
 
            foreach (var spawnedObject in spawnedObjects)
            {
-                if (spawnedObject._objectType == SpawnableObjects.Nothing)
+                if (spawnedObject.ObjectType == SpawnableObjects.Nothing)
                 {
                     _spawnManager.AddObjects(spawnedObjects);
                     return;

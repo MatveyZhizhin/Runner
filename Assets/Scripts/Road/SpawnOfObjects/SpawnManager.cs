@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.Road.SpawnOfObjects
+namespace Road.SpawnOfObjects
 {
     public class SpawnManager : MonoBehaviour
     {

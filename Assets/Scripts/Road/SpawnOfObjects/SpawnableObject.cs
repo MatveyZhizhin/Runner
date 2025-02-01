@@ -1,9 +1,9 @@
 using UnityEngine;
 
-namespace Assets.Scripts.Road.SpawnOfObjects
+namespace Road.SpawnOfObjects
 {
     public class SpawnableObject : MonoBehaviour
     {
-        public SpawnableObjects _objectType;
+        public SpawnableObjects ObjectType;
     }
 }
