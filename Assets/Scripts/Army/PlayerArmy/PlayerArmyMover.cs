@@ -7,16 +7,50 @@ namespace Army.PlayerArmy {
         [SerializeField] private float _speedForLateralMovement;
         [SerializeField] private Joystick _joystick;
 
+        private bool isMovingForward = true;
+        private bool isMoving = true;
+
         private void FixedUpdate() {
-            Move();
+            if (isMoving)
+            {
+                if (isMovingForward)
+                {
+                    Move(_speed);
+                }
+                else
+                {
+                    Move(-_speed);
+                }
+            }
+
         }
 
-        private void Move()
+        private void Move(float speed)
         {
             var moveHorizontal = _joystick.Horizontal;
 
-            var movement = new Vector3(moveHorizontal, 0f, _speed * Time.deltaTime);
+            var movement = new Vector3(moveHorizontal, 0f, speed * Time.deltaTime);
             transform.position = transform.position + movement * _speedForLateralMovement * Time.deltaTime;
         }
+
+
+
+        public void ChangeOfDirection(string direction)
+        {
+            if (direction == "forward")
+            {
+                isMovingForward = true;
+            }
+            else if (direction == "back")
+            {
+                isMovingForward = false;
+            }
+        }
+
+        public void TrafficStop()
+        {
+            isMoving = false;
+        }
+        
     }
 }
