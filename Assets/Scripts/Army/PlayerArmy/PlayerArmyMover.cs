@@ -19,7 +19,7 @@ namespace Army.PlayerArmy {
                 }
                 else
                 {
-                    Move(-_speed);
+                    Move(-_speed + 4);
                 }
             }
 
@@ -35,16 +35,14 @@ namespace Army.PlayerArmy {
 
 
 
-        public void ChangeOfDirection(string direction)
+        public void StartMovingBack(string direction)
         {
-            if (direction == "forward")
-            {
-                isMovingForward = true;
-            }
-            else if (direction == "back")
-            {
-                isMovingForward = false;
-            }
+            isMovingForward = false;
+        }
+
+        public void StartMovingForward()
+        {
+            isMovingForward = true;
         }
 
         public void TrafficStop()
