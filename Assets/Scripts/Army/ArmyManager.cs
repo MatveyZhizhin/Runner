@@ -15,22 +15,33 @@ namespace Army
 
         private Vector3 _unitSize;
 
-        private void Start()
+        private void Awake()
         {
             _unitSize = _unitPrefab.transform.localScale * _unitScaleMultiplier;
-            ChangeSpawnPointPosition(_spawnPoint.localPosition.x - _unitSize.x, _spawnPoint.localPosition.z + _unitSize.z * (_maximumAmountOfUnitsInRow / 2));
         }
 
-        private void Update()
+        private void Start()
+        {         
+            if (_unitPrefab.UnitType != UnitTypes.Player)
+                ChangeSpawnPointPosition(_spawnPoint.localPosition.x - _unitSize.x, _spawnPoint.localPosition.z + _unitSize.z * (_maximumAmountOfUnitsInRow / 2));
+        }
+
+        public int GetUnitsCount()
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-                AddUnit(50);
-            if (Input.GetKeyDown(KeyCode.Alpha3))
-                RemoveUnit(20);
+            return _spawnedUnits.Count;
         }
 
         public void AddUnit(int amount = 1)
         {
+            if (_spawnedUnits.Count == 0 && _unitPrefab.UnitType == UnitTypes.Player)
+            {
+                var newUnit = Instantiate(_unitPrefab, _spawnPoint.position, _unitPrefab.transform.localRotation);
+                newUnit.transform.parent = transform;
+                _spawnedUnits.Add(newUnit);
+                ChangeSpawnPointPosition(_spawnPoint.localPosition.x - _unitSize.x, _spawnPoint.localPosition.z + _unitSize.z * (_maximumAmountOfUnitsInRow / 2));
+                amount -= 1;
+            }
+
             for (int i = 0; i < amount; i++)
             {                           
                 var newUnit = Instantiate(_unitPrefab, _spawnPoint.position, _unitPrefab.transform.localRotation);
@@ -49,9 +60,14 @@ namespace Army
         public void RemoveUnit(int amount = 1)
         {
 
-            if (amount > _spawnedUnits.Count)
-                return;
-
+            if (amount >= _spawnedUnits.Count)
+            {
+                if (_unitPrefab.UnitType == UnitTypes.Player)
+                    RemoveUnit(_spawnedUnits.Count - 1);
+                else
+                    RemoveUnit(_spawnedUnits.Count);
+            }  
+            
             var startSpawnedUnitsCount = _spawnedUnits.Count;
 
             for (int i = _spawnedUnits.Count; i > startSpawnedUnitsCount - amount; i--)
@@ -71,7 +87,15 @@ namespace Army
 
         private int CalculateCurrentAmountOfUnitsInLastRow()
         {
-            if (_spawnedUnits.Count % _maximumAmountOfUnitsInRow != 0)
+            if(_unitPrefab.UnitType == UnitTypes.Player)
+            {
+                if ((_spawnedUnits.Count - 1) % _maximumAmountOfUnitsInRow != 0)
+                    return _spawnedUnits.Count % _maximumAmountOfUnitsInRow;
+                else
+                    return _maximumAmountOfUnitsInRow;
+            }
+
+            if ((_spawnedUnits.Count) % _maximumAmountOfUnitsInRow != 0)
                 return _spawnedUnits.Count % _maximumAmountOfUnitsInRow;
 
             return _maximumAmountOfUnitsInRow;
