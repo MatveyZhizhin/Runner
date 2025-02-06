@@ -1,13 +1,16 @@
 using Army;
+using System.Linq;
 using UnityEngine;
 
-namespace Health
+namespace HealthOfObjects
 {
     public class ArmyHealth : Health
     {
         [SerializeField] private int _healthPerUnit;
 
         private ArmyManager _armyManager;
+
+        private int UnitsCount => _armyManager.GetUnits().Count();
 
         private void Awake()
         {
@@ -18,9 +21,9 @@ namespace Health
         {
             base.AddHealth(additionalHealth);
 
-            var difference = (int)_currentHealth / _healthPerUnit - _armyManager.GetUnitsCount();
+            var difference = (int)_currentHealth / _healthPerUnit - UnitsCount;
 
-            if (_currentHealth > _armyManager.GetUnitsCount() * _healthPerUnit)
+            if (_currentHealth > UnitsCount * _healthPerUnit)
             {
                 if (_currentHealth % _healthPerUnit != 0)
                 {
@@ -36,9 +39,9 @@ namespace Health
         {
             base.TakeDamage(damage);
 
-            var difference = _armyManager.GetUnitsCount() - (int)_currentHealth / _healthPerUnit;
+            var difference = UnitsCount - (int)_currentHealth / _healthPerUnit;
 
-            if (_currentHealth < _armyManager.GetUnitsCount() * _healthPerUnit)
+            if (_currentHealth < UnitsCount * _healthPerUnit)
             {
                 if (_currentHealth % _healthPerUnit != 0)
                 {

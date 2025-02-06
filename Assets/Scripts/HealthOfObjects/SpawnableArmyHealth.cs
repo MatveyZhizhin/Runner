@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Health
+namespace HealthOfObjects
 {
     public class SpawnableArmyHealth : ArmyHealth
     {

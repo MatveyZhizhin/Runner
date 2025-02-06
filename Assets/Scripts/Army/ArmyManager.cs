@@ -1,4 +1,5 @@
 using Army.Units;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,15 +21,9 @@ namespace Army
             _unitSize = _unitPrefab.transform.localScale * _unitScaleMultiplier;
         }
 
-        private void Start()
-        {         
-            if (_unitPrefab.UnitType != UnitTypes.Player)
-                ChangeSpawnPointPosition(_spawnPoint.localPosition.x - _unitSize.x, _spawnPoint.localPosition.z + _unitSize.z * (_maximumAmountOfUnitsInRow / 2));
-        }
-
-        public int GetUnitsCount()
+        public Unit[] GetUnits()
         {
-            return _spawnedUnits.Count;
+            return _spawnedUnits.ToArray();
         }
 
         public void AddUnit(int amount = 1)

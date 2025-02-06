@@ -2,7 +2,7 @@ using System;
 using UI;
 using UnityEngine;
 
-namespace Health
+namespace HealthOfObjects
 {
     public class Health : MonoBehaviour, ITextUser
     {
