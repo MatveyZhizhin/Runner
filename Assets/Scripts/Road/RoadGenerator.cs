@@ -6,7 +6,7 @@ namespace Road
 {
     public class RoadGenerator : MonoBehaviour
     {
-        private List<RoadSegment> _roadSegments = new List<RoadSegment>();
+        private List<RoadSegment> _roadSegments;
 
         [SerializeField] private RoadSegment _roadSegmentPrefab;
         [SerializeField] private Transform _spawnPoint;
@@ -28,9 +28,7 @@ namespace Road
                 newRoadSegment.transform.parent = transform;
                 var newSpawnPointPosition = _spawnPoint.localPosition.x + segmentSize;
                 ChangeSpawnPointPosition(newSpawnPointPosition);
-            }
-
-            
+            }          
         }
 
         private void ChangeSpawnPointPosition(float newPostion = 0)
