@@ -6,7 +6,7 @@ namespace Road
 {
     public class RoadGenerator : MonoBehaviour
     {
-        private List<RoadSegment> _roadSegments;
+        private List<RoadSegment> _roadSegments = new List<RoadSegment>();
 
         [SerializeField] private RoadSegment _roadSegmentPrefab;
         [SerializeField] private Transform _spawnPoint;
