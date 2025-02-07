@@ -17,7 +17,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Units/PlayerUnits/MovePlayerUnits.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.9/Scripts/Runtime/TMP_Settings.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -94,7 +94,9 @@
       <workItem from="1738166807849" duration="3126000" />
       <workItem from="1738266296701" duration="879000" />
       <workItem from="1738596337220" duration="1496000" />
-      <workItem from="1738613549667" duration="254000" />
+      <workItem from="1738613549667" duration="419000" />
+      <workItem from="1738938828770" duration="347000" />
+      <workItem from="1738955688790" duration="20000" />
     </task>
     <servers />
   </component>

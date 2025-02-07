@@ -7,13 +7,13 @@ namespace Army.PlayerArmy {
         [SerializeField] private float _speedForLateralMovement;
         [SerializeField] private Joystick _joystick;
 
-        private bool isMovingForward = true;
-        private bool isMoving = true;
+        private bool _isMovingForward = true;
+        private bool _isMoving = true;
 
         private void FixedUpdate() {
-            if (isMoving)
+            if (_isMoving)
             {
-                if (isMovingForward)
+                if (_isMovingForward)
                 {
                     Move(_speed);
                 }
@@ -21,6 +21,10 @@ namespace Army.PlayerArmy {
                 {
                     Move(-_speed + 4);
                 }
+            }
+            else
+            {
+                Move(0);
             }
 
         }
@@ -35,19 +39,24 @@ namespace Army.PlayerArmy {
 
 
 
-        public void StartMovingBack(string direction)
+        public void StartMovingBack()
         {
-            isMovingForward = false;
+            _isMovingForward = false;
         }
 
         public void StartMovingForward()
         {
-            isMovingForward = true;
+            _isMovingForward = true;
         }
 
         public void TrafficStop()
         {
-            isMoving = false;
+            _isMoving = false;
+        }
+
+        public void TrafficStart()
+        {
+            _isMoving = true;
         }
         
     }
