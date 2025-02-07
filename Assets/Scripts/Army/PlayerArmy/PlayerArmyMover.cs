@@ -35,7 +35,7 @@ namespace Army.PlayerArmy {
 
 
 
-        public void StartMovingBack(string direction)
+        public void StartMovingBack()
         {
             isMovingForward = false;
         }
