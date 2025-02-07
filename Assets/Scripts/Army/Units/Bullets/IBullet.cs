@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Army.Units.Bullet
+namespace Army.Units.Bullets
 {
     public interface IBullet
     {

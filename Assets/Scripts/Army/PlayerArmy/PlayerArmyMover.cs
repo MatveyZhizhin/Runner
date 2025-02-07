@@ -1,3 +1,4 @@
+using Army.Units;
 using UnityEngine;
 
 namespace Army.PlayerArmy {
@@ -6,6 +7,8 @@ namespace Army.PlayerArmy {
         [SerializeField] private float _speed;
         [SerializeField] private float _speedForLateralMovement;
         [SerializeField] private Joystick _joystick;
+
+        [SerializeField] private float _stopDistance;
 
         private bool _isMovingForward = true;
         private bool _isMoving = true;
@@ -27,6 +30,7 @@ namespace Army.PlayerArmy {
                 Move(0);
             }
 
+            FindEnemyArmy();
         }
 
         private void Move(float speed)
@@ -37,7 +41,30 @@ namespace Army.PlayerArmy {
             transform.position = transform.position + movement * _speedForLateralMovement * Time.deltaTime;
         }
 
+        private void FindEnemyArmy()
+        {
+            Ray ray = new Ray(transform.position, Vector3.forward);
+            RaycastHit hitInfo;
 
+            if (Physics.Raycast(ray, out hitInfo, _stopDistance))
+            {
+                if (hitInfo.collider != null)
+                {
+                    if (hitInfo.collider.TryGetComponent(out ArmyManager armyManager))
+                    {
+                        if (armyManager.GetComponentInChildren<Unit>().UnitType == UnitTypes.Enemy)
+                        {
+                            TrafficStop();
+                        }
+                        else
+                        {
+                            TrafficStart();
+                        }
+                    }
+                }               
+            }
+
+        }
 
         public void StartMovingBack()
         {
@@ -58,6 +85,11 @@ namespace Army.PlayerArmy {
         {
             _isMoving = true;
         }
-        
+
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawRay(transform.position, Vector3.forward * _stopDistance);
+        }
     }
 }

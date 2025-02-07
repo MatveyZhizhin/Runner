@@ -11,7 +11,6 @@ namespace Army
     {
         [SerializeField] private int _damage;
         [SerializeField] private float _attackDistance;
-        [SerializeField] private float _minimumAttackDistance;
         [SerializeField] private float _attackRate;
 
         [SerializeField] private LayerMask _attackableObjects;
@@ -19,14 +18,12 @@ namespace Army
         [SerializeField] private Transform _attackPoint;
 
         private ArmyManager _armyManager;
-        private PlayerArmyMover _playerArmyMover;
 
-        private bool _isAttacking;
+        private bool _isAttacking = false;
 
         private void Awake()
         {
             TryGetComponent(out _armyManager);
-            _playerArmyMover = FindObjectOfType<PlayerArmyMover>();
         }
 
         private void Update()
@@ -51,13 +48,13 @@ namespace Army
                             StartCoroutine(Attack());
                             _isAttacking = true;
                         }                      
-                    }
-                    else
-                    {
-                        StopAllCoroutines();
-                        _isAttacking = false;
-                    }
-                }
+                    }                    
+                }               
+            }
+            else
+            {
+                StopAllCoroutines();
+                _isAttacking = false;
             }
         }
 
@@ -69,19 +66,17 @@ namespace Army
             {
                 foreach (var unit in units)
                 {
-                   
+                    unit.Fire(_damage, _attackableObjects);
                 }
 
                 yield return new WaitForSeconds(_attackRate);
-            }
+            }                                                                                       
         }
 
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.red;
             Gizmos.DrawRay(_attackPoint.position, Vector3.forward * _attackDistance);
-            Gizmos.color = Color.blue;
-            Gizmos.DrawRay(_attackPoint.position, Vector3.forward * _minimumAttackDistance);
         }
     }
 

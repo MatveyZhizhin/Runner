@@ -2,7 +2,7 @@ using HealthOfObjects;
 using Road.SpawnOfObjects;
 using UnityEngine;
 
-namespace Army.Units.Bullet
+namespace Army.Units.Bullets
 {
     public class Bullet : MonoBehaviour, IBullet
     {
@@ -21,7 +21,7 @@ namespace Army.Units.Bullet
             _unitType = unitType;
         }
 
-        private void Update()
+        private void LateUpdate()
         {
             Move();
         }
@@ -35,29 +35,39 @@ namespace Army.Units.Bullet
             {
                 if (hitInfo.collider != null)
                 {
-                    if (TryGetComponent(out Health health))
+                    if (hitInfo.collider.TryGetComponent(out Health health))
                     {
                         if (_unitType == UnitTypes.Player)
                         {
-                            if (TryGetComponent(out SpawnableObject spawnableObject))
+                            if (hitInfo.collider.TryGetComponent(out SpawnableObject spawnableObject))
                             {
                                 health.TakeDamage(_damage);
-                            }
+                                Destroy(gameObject);
+                            }                                                        
                         }
                         else
                         {
-                            if (TryGetComponent(out ArmyManager armyManager))
+                            if (hitInfo.collider.TryGetComponent(out ArmyManager armyManager))
                             {
-                                health.TakeDamage(_damage);
+                                if (armyManager.GetComponentInChildren<Unit>().UnitType == UnitTypes.Player)
+                                {
+                                    health.TakeDamage(_damage);
+                                    Destroy(gameObject);
+                                }                                  
                             }
                         }
                     }
-                    Destroy(gameObject);
                 }              
             }
             Destroy(gameObject, _lifeTime);
 
             transform.Translate(Vector3.forward * _speed * Time.deltaTime);
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawRay(transform.position, transform.forward * _distance);
         }
     }
 }

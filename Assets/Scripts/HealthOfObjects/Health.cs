@@ -33,7 +33,7 @@ namespace HealthOfObjects
             Changed?.Invoke(_currentHealth.ToString());
 
             if (_currentHealth <= 0) 
-                Destroyed?.Invoke();
+                Destroy(gameObject);
         }
     }
 }

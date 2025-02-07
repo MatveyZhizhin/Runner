@@ -650,12 +650,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4367911839955768236, guid: 00cacd98acc0c1e40a1ad0080f714d34, type: 3}
       propertyPath: _speed
-      value: 15
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 4367911839955768236, guid: 00cacd98acc0c1e40a1ad0080f714d34, type: 3}
       propertyPath: _joystick
       value: 
       objectReference: {fileID: 1145091880}
+    - target: {fileID: 4367911839955768236, guid: 00cacd98acc0c1e40a1ad0080f714d34, type: 3}
+      propertyPath: _stopDistance
+      value: 16.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7101061513194785089, guid: 00cacd98acc0c1e40a1ad0080f714d34, type: 3}
+      propertyPath: _unitPrefab
+      value: 
+      objectReference: {fileID: 3049584506544813564, guid: 603fc9028bece604d820aec339e90ea4, type: 3}
     - target: {fileID: 7323831626419169836, guid: 00cacd98acc0c1e40a1ad0080f714d34, type: 3}
       propertyPath: _attackDistance
       value: 17.2

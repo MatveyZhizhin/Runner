@@ -58,9 +58,9 @@ namespace Army
             if (amount >= _spawnedUnits.Count)
             {
                 if (_unitPrefab.UnitType == UnitTypes.Player)
-                    RemoveUnit(_spawnedUnits.Count - 1);
+                    amount = _spawnedUnits.Count - 1;
                 else
-                    RemoveUnit(_spawnedUnits.Count);
+                    amount = _spawnedUnits.Count;
             }  
             
             var startSpawnedUnitsCount = _spawnedUnits.Count;
