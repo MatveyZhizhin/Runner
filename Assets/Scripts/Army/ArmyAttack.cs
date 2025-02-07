@@ -59,24 +59,6 @@ namespace Army
                     }
                 }
             }
-
-            if (Physics.Raycast(ray, out hitInfo, _minimumAttackDistance, _attackableObjects))
-            {
-                if (hitInfo.collider != null)
-                {
-                    if (hitInfo.collider.TryGetComponent(out ArmyManager armyManager))
-                    {
-                        if(hitInfo.collider.GetComponentInChildren<Unit>().UnitType == UnitTypes.Enemy)
-                        {
-
-                        }
-                        else
-                        {
-
-                        }
-                    }
-                }
-            }
         }
 
         private IEnumerator Attack()
@@ -87,7 +69,7 @@ namespace Army
             {
                 foreach (var unit in units)
                 {
-                    unit.Fire();
+                   
                 }
 
                 yield return new WaitForSeconds(_attackRate);
