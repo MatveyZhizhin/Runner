@@ -14,7 +14,7 @@ namespace Army.PlayerArmy {
         private bool _isMovingForward = true;
         private bool _isMoving = true;
 
-        private void FixedUpdate() {
+        private void Update() {
             if (_isMoving)
             {
                 if (_isMovingForward)
@@ -29,11 +29,8 @@ namespace Army.PlayerArmy {
             else
             {
                 Move(0);
-            }            
-        }
+            }
 
-        private void LateUpdate()
-        {
             FindEnemyArmy();
         }
 

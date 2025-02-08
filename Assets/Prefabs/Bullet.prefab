@@ -98,4 +98,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _distance: 0.21
   _lifeTime: 5
-  _speed: 50
+  _speed: 30

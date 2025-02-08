@@ -21,6 +21,12 @@ namespace Army
             _unitSize = _unitPrefab.transform.localScale * _unitScaleMultiplier;
         }
 
+        private void Start()
+        {
+            if (_unitPrefab.UnitType != UnitTypes.Player)
+                ChangeSpawnPointPosition(_spawnPoint.localPosition.x - _unitSize.x, _spawnPoint.localPosition.z + _unitSize.z * (_maximumAmountOfUnitsInRow / 2));
+        }
+
         public Unit[] GetUnits()
         {
             return _spawnedUnits.ToArray();
@@ -30,7 +36,7 @@ namespace Army
         {
             if (_spawnedUnits.Count == 0 && _unitPrefab.UnitType == UnitTypes.Player)
             {
-                var newUnit = Instantiate(_unitPrefab, _spawnPoint.position, _spawnPoint.localRotation);
+                var newUnit = Instantiate(_unitPrefab, _spawnPoint.position, _spawnPoint.rotation);
                 newUnit.transform.parent = transform;
                 _spawnedUnits.Add(newUnit);
                 ChangeSpawnPointPosition(_spawnPoint.localPosition.x - _unitSize.x, _spawnPoint.localPosition.z + _unitSize.z * (_maximumAmountOfUnitsInRow / 2));
@@ -39,7 +45,7 @@ namespace Army
 
             for (int i = 0; i < amount; i++)
             {                           
-                var newUnit = Instantiate(_unitPrefab, _spawnPoint.position, _spawnPoint.localRotation);
+                var newUnit = Instantiate(_unitPrefab, _spawnPoint.position, _spawnPoint.rotation);
                 newUnit.transform.parent = transform;
                 _spawnedUnits.Add(newUnit);
                 ChangeSpawnPointPosition(_spawnPoint.localPosition.x, _spawnPoint.localPosition.z - _unitSize.z);

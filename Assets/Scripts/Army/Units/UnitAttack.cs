@@ -1,4 +1,4 @@
-using Army.Units.Bullets;
+using Army.Units;
 using UnityEngine;
 
 namespace Army.Units

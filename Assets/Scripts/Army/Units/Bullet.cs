@@ -2,7 +2,7 @@ using HealthOfObjects;
 using Road.SpawnOfObjects;
 using UnityEngine;
 
-namespace Army.Units.Bullets
+namespace Army.Units
 {
     public class Bullet : MonoBehaviour
     {
