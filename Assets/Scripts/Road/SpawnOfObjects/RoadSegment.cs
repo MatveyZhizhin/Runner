@@ -30,6 +30,9 @@ namespace Road.SpawnOfObjects
            {
                 var newObjectType = (SpawnableObjects)objectTypes.GetValue(Random.Range(0, objectTypes.Length));
 
+                if (!_spawnManager.HasSpace())
+                    newObjectType = SpawnableObjects.Nothing;
+
                 foreach (var spawnableObject in _spawnableObjects)
                 {               
                     if (spawnableObject.ObjectType == newObjectType)
