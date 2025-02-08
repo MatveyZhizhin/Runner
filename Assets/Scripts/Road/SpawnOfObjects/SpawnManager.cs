@@ -8,9 +8,9 @@ namespace Road.SpawnOfObjects
         private List<SpawnableObject> _spawnedObjects = new List<SpawnableObject>();
         [SerializeField] private int _maxAmountOfObjects;
 
-        public void AddObjects(List<SpawnableObject> spawnedObjects)
+        public void AddObject(SpawnableObject spawnedObject)
         {
-            _spawnedObjects.AddRange(spawnedObjects);
+            _spawnedObjects.Add(spawnedObject);
         }
 
         public void RemoveObject(SpawnableObject spawnedObject)
