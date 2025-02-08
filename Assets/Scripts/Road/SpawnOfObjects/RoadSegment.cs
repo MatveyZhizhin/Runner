@@ -12,6 +12,8 @@ namespace Road.SpawnOfObjects
 
         private SpawnManager _spawnManager;
 
+        [SerializeField] private bool _isLastSegment;
+
         private void Awake()
         {
             _spawnManager = FindObjectOfType<SpawnManager>();
@@ -24,14 +26,17 @@ namespace Road.SpawnOfObjects
 
         private void Spawn()
         {
-           var objectTypes = Enum.GetValues(typeof(SpawnableObjects));
-           var spawnedObjects = new List<SpawnableObject>();
-           foreach (var spawnPoint in _spawnPoints)
-           {
+            var objectTypes = Enum.GetValues(typeof(SpawnableObjects));
+            var spawnedObjects = new List<SpawnableObject>();
+            foreach (var spawnPoint in _spawnPoints)
+            {
                 var newObjectType = (SpawnableObjects)objectTypes.GetValue(Random.Range(0, objectTypes.Length));
 
                 if (!_spawnManager.HasSpace())
                     newObjectType = SpawnableObjects.Nothing;
+
+                if(_isLastSegment)
+                    newObjectType = SpawnableObjects.Boss;
 
                 foreach (var spawnableObject in _spawnableObjects)
                 {               
@@ -40,27 +45,30 @@ namespace Road.SpawnOfObjects
                       var newObject = Instantiate(spawnableObject, spawnPoint.position, spawnableObject.transform.rotation);
                       newObject.transform.parent = transform;
                       spawnedObjects.Add(newObject);
+                      _spawnManager.AddObject(newObject);
 
                       break;
                     }
                 }
-           } 
+            } 
 
-           foreach (var spawnedObject in spawnedObjects)
-           {
-                if (spawnedObject.ObjectType == SpawnableObjects.Nothing)
+            if (!_isLastSegment)
+            {
+                foreach (var spawnedObject in spawnedObjects)
                 {
-                    _spawnManager.AddObjects(spawnedObjects);
-                    return;
+                    if (spawnedObject.ObjectType == SpawnableObjects.Nothing)
+                    {
+                        return;
+                    }
                 }
-           }     
-           
-           foreach (var spawnedObject in spawnedObjects)
-           {
-                Destroy(spawnedObject.gameObject);
-           }
 
-           Spawn();
+                foreach (var spawnedObject in spawnedObjects)
+                {
+                    _spawnManager.RemoveObject(spawnedObject);
+                }
+
+                Spawn();
+            }         
         }
     }
 }

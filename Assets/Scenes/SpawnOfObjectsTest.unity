@@ -154,7 +154,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _roadSegmentPrefab: {fileID: -1933602090737463700, guid: 928dbdedbe7432d4fa16f6e78fe22ff8, type: 3}
   _spawnPoint: {fileID: 1112172982}
-  _roadSegmentCount: 7
+  _lastSegmentPrefab: {fileID: -1933602090737463700, guid: 26a3debed1ff3154883bd92c34eb6d2f, type: 3}
+  _roadSegmentCount: 20
 --- !u!4 &110478149
 Transform:
   m_ObjectHideFlags: 0
@@ -370,7 +371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf3a874a0d3528d4a8d4714439cf89fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxAmountOfObjects: 10
+  _maxAmountOfObjects: 60
 --- !u!1 &1112172980
 GameObject:
   m_ObjectHideFlags: 0
