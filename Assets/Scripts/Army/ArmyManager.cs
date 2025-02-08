@@ -1,4 +1,5 @@
 using Army.Units;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ namespace Army
     public class ArmyManager : MonoBehaviour
     {
         [SerializeField] private Unit _unitPrefab;
-        [SerializeField] private List<Unit> _spawnedUnits;
+        private List<Unit> _spawnedUnits = new List<Unit>();
 
         [SerializeField] private Transform _spawnPoint;
         [SerializeField] private int _maximumAmountOfUnitsInRow;
@@ -21,21 +22,21 @@ namespace Army
         }
 
         private void Start()
-        {         
+        {
             if (_unitPrefab.UnitType != UnitTypes.Player)
                 ChangeSpawnPointPosition(_spawnPoint.localPosition.x - _unitSize.x, _spawnPoint.localPosition.z + _unitSize.z * (_maximumAmountOfUnitsInRow / 2));
         }
 
-        public int GetUnitsCount()
+        public Unit[] GetUnits()
         {
-            return _spawnedUnits.Count;
+            return _spawnedUnits.ToArray();
         }
 
         public void AddUnit(int amount = 1)
         {
             if (_spawnedUnits.Count == 0 && _unitPrefab.UnitType == UnitTypes.Player)
             {
-                var newUnit = Instantiate(_unitPrefab, _spawnPoint.position, _unitPrefab.transform.localRotation);
+                var newUnit = Instantiate(_unitPrefab, _spawnPoint.position, _spawnPoint.rotation);
                 newUnit.transform.parent = transform;
                 _spawnedUnits.Add(newUnit);
                 ChangeSpawnPointPosition(_spawnPoint.localPosition.x - _unitSize.x, _spawnPoint.localPosition.z + _unitSize.z * (_maximumAmountOfUnitsInRow / 2));
@@ -44,7 +45,7 @@ namespace Army
 
             for (int i = 0; i < amount; i++)
             {                           
-                var newUnit = Instantiate(_unitPrefab, _spawnPoint.position, _unitPrefab.transform.localRotation);
+                var newUnit = Instantiate(_unitPrefab, _spawnPoint.position, _spawnPoint.rotation);
                 newUnit.transform.parent = transform;
                 _spawnedUnits.Add(newUnit);
                 ChangeSpawnPointPosition(_spawnPoint.localPosition.x, _spawnPoint.localPosition.z - _unitSize.z);
@@ -63,9 +64,9 @@ namespace Army
             if (amount >= _spawnedUnits.Count)
             {
                 if (_unitPrefab.UnitType == UnitTypes.Player)
-                    RemoveUnit(_spawnedUnits.Count - 1);
+                    amount = _spawnedUnits.Count - 1;
                 else
-                    RemoveUnit(_spawnedUnits.Count);
+                    amount = _spawnedUnits.Count;
             }  
             
             var startSpawnedUnitsCount = _spawnedUnits.Count;

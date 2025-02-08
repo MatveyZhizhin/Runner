@@ -1,15 +1,16 @@
 using System;
 using UI;
 using UnityEngine;
+using UnityEngine.Events;
 
-namespace Health
+namespace HealthOfObjects
 {
     public class Health : MonoBehaviour, ITextUser
     {
         [SerializeField] protected int _startHealth;
         protected int _currentHealth;
 
-        public event Action Destroyed;
+        [SerializeField] private UnityEvent OnDeath;
         public event Action<string> Changed;
 
         private void Start()
@@ -32,8 +33,8 @@ namespace Health
 
             Changed?.Invoke(_currentHealth.ToString());
 
-            if (_currentHealth <= 0) 
-                Destroyed?.Invoke();
+            if (_currentHealth <= 0)
+                OnDeath?.Invoke();            
         }
     }
 }

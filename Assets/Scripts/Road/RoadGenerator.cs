@@ -10,6 +10,7 @@ namespace Road
 
         [SerializeField] private RoadSegment _roadSegmentPrefab;
         [SerializeField] private Transform _spawnPoint;
+        [SerializeField] private RoadSegment _lastSegmentPrefab;
 
         [SerializeField] private int _roadSegmentCount;
 
@@ -23,14 +24,21 @@ namespace Road
             var segmentSize = _roadSegmentPrefab.transform.localScale.x;
             for (int i = 0; i < _roadSegmentCount; i++)
             {
-                var newRoadSegment = Instantiate(_roadSegmentPrefab, _spawnPoint.position, Quaternion.identity);
+                RoadSegment newRoadSegment;
+
+                if (i + 1 == _roadSegmentCount)
+                {
+                    newRoadSegment = Instantiate(_lastSegmentPrefab, _spawnPoint.position, Quaternion.identity);
+                }
+                else
+                {
+                    newRoadSegment = Instantiate(_roadSegmentPrefab, _spawnPoint.position, Quaternion.identity);
+                }
                 _roadSegments.Add(newRoadSegment);
                 newRoadSegment.transform.parent = transform;
                 var newSpawnPointPosition = _spawnPoint.localPosition.x + segmentSize;
                 ChangeSpawnPointPosition(newSpawnPointPosition);
-            }
-
-            
+            }           
         }
 
         private void ChangeSpawnPointPosition(float newPostion = 0)

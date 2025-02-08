@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Health
+namespace HealthOfObjects
 {
     public class SpawnableArmyHealth : ArmyHealth
     {
@@ -12,5 +12,7 @@ namespace Health
             _startHealth = Random.Range(_minimumStartHealth, _maximumStartHealth);
             AddHealth(_startHealth);
         }
+
+
     }
 }
