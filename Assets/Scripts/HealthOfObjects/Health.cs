@@ -1,6 +1,7 @@
 using System;
 using UI;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace HealthOfObjects
 {
@@ -9,7 +10,7 @@ namespace HealthOfObjects
         [SerializeField] protected int _startHealth;
         protected int _currentHealth;
 
-        public event Action Destroyed;
+        [SerializeField] private UnityEvent OnDeath;
         public event Action<string> Changed;
 
         private void Start()
@@ -32,8 +33,8 @@ namespace HealthOfObjects
 
             Changed?.Invoke(_currentHealth.ToString());
 
-            if (_currentHealth <= 0) 
-                Destroy(gameObject);
+            if (_currentHealth <= 0)
+                OnDeath?.Invoke();            
         }
     }
 }

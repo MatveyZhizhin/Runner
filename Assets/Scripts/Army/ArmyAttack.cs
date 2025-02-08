@@ -34,7 +34,7 @@ namespace Army
         private void FindAttackableObjects()
         {
 
-            Ray ray = new Ray(_attackPoint.position, Vector3.forward);
+            Ray ray = new Ray(_attackPoint.position, _attackPoint.forward);
             RaycastHit hitInfo;
 
             if (Physics.Raycast(ray, out hitInfo, _attackDistance, _attackableObjects))
@@ -76,7 +76,7 @@ namespace Army
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawRay(_attackPoint.position, Vector3.forward * _attackDistance);
+            Gizmos.DrawRay(_attackPoint.position, _attackPoint.forward * _attackDistance);
         }
     }
 

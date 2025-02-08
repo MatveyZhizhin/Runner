@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Army.Units.Bullets
 {
-    public class Bullet : MonoBehaviour, IBullet
+    public class Bullet : MonoBehaviour
     {
         private int _damage;
         private LayerMask _attackableObjects;

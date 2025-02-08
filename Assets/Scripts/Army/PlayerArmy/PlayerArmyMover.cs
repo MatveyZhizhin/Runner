@@ -9,6 +9,7 @@ namespace Army.PlayerArmy {
         [SerializeField] private Joystick _joystick;
 
         [SerializeField] private float _stopDistance;
+        [SerializeField] private Transform _stopPoint;
 
         private bool _isMovingForward = true;
         private bool _isMoving = true;
@@ -28,8 +29,11 @@ namespace Army.PlayerArmy {
             else
             {
                 Move(0);
-            }
+            }            
+        }
 
+        private void LateUpdate()
+        {
             FindEnemyArmy();
         }
 
@@ -43,7 +47,7 @@ namespace Army.PlayerArmy {
 
         private void FindEnemyArmy()
         {
-            Ray ray = new Ray(transform.position, Vector3.forward);
+            Ray ray = new Ray(_stopPoint.position, _stopPoint.forward);
             RaycastHit hitInfo;
 
             if (Physics.Raycast(ray, out hitInfo, _stopDistance))
@@ -55,13 +59,13 @@ namespace Army.PlayerArmy {
                         if (armyManager.GetComponentInChildren<Unit>().UnitType == UnitTypes.Enemy)
                         {
                             TrafficStop();
-                        }
-                        else
-                        {
-                            TrafficStart();
-                        }
+                        }                  
                     }
                 }               
+            }
+            else
+            {
+                TrafficStart();
             }
 
         }
@@ -89,7 +93,7 @@ namespace Army.PlayerArmy {
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.blue;
-            Gizmos.DrawRay(transform.position, Vector3.forward * _stopDistance);
+            Gizmos.DrawRay(_stopPoint.position, _stopPoint.forward * _stopDistance);
         }
     }
 }

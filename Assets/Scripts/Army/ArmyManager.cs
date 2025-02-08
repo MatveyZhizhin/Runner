@@ -8,7 +8,7 @@ namespace Army
     public class ArmyManager : MonoBehaviour
     {
         [SerializeField] private Unit _unitPrefab;
-        [SerializeField] private List<Unit> _spawnedUnits;
+        private List<Unit> _spawnedUnits = new List<Unit>();
 
         [SerializeField] private Transform _spawnPoint;
         [SerializeField] private int _maximumAmountOfUnitsInRow;
@@ -30,7 +30,7 @@ namespace Army
         {
             if (_spawnedUnits.Count == 0 && _unitPrefab.UnitType == UnitTypes.Player)
             {
-                var newUnit = Instantiate(_unitPrefab, _spawnPoint.position, _unitPrefab.transform.localRotation);
+                var newUnit = Instantiate(_unitPrefab, _spawnPoint.position, _spawnPoint.localRotation);
                 newUnit.transform.parent = transform;
                 _spawnedUnits.Add(newUnit);
                 ChangeSpawnPointPosition(_spawnPoint.localPosition.x - _unitSize.x, _spawnPoint.localPosition.z + _unitSize.z * (_maximumAmountOfUnitsInRow / 2));
@@ -39,7 +39,7 @@ namespace Army
 
             for (int i = 0; i < amount; i++)
             {                           
-                var newUnit = Instantiate(_unitPrefab, _spawnPoint.position, _unitPrefab.transform.localRotation);
+                var newUnit = Instantiate(_unitPrefab, _spawnPoint.position, _spawnPoint.localRotation);
                 newUnit.transform.parent = transform;
                 _spawnedUnits.Add(newUnit);
                 ChangeSpawnPointPosition(_spawnPoint.localPosition.x, _spawnPoint.localPosition.z - _unitSize.z);

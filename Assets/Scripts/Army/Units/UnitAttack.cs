@@ -10,8 +10,11 @@ namespace Army.Units
 
         public override void Fire(int damage, LayerMask attackableObjects)
         {
-            var newBullet = Instantiate(_bulletPrefab, _spawnPoint.position, Quaternion.identity);
-            newBullet.SetInformation(damage, attackableObjects, UnitType);
+            if (_spawnPoint != null)
+            {
+                var newBullet = Instantiate(_bulletPrefab, _spawnPoint.position, _spawnPoint.rotation);
+                newBullet.SetInformation(damage, attackableObjects, UnitType);
+            }          
         }
     }
 }
