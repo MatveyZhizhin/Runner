@@ -1,3 +1,4 @@
+using System.Collections;
 using System;
 using UI;
 using UnityEngine;
@@ -15,13 +16,13 @@ namespace Balance
             BalanceIncrease(0);
         }
 
-        public void BalanceIncrease(int count)
+        public void IncreaseBalance(int count)
         {
             _balance += count;
             Changed?.Invoke(_balance.ToString());
         }
 
-        public void BalanceReduction(int count)
+        public void DecreaseBalance(int count)
         {
             if (count > _balance) return;
          
