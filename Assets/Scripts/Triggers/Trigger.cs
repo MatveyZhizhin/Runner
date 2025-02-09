@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Scripts.Triggers
+namespace Triggers
 {
     [RequireComponent(typeof(Collider))]
     public class Trigger<T> : MonoBehaviour where T : MonoBehaviour

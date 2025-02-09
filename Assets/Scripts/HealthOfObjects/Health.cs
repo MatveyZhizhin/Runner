@@ -10,6 +10,8 @@ namespace HealthOfObjects
         [SerializeField] protected int _startHealth;
         protected int _currentHealth;
 
+        public int CurrentHealth => _currentHealth;
+
         [SerializeField] private UnityEvent OnDeath;
         public event Action<string> Changed;
 
