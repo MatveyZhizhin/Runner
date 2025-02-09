@@ -64,9 +64,8 @@ namespace Army.PlayerArmy {
             {
                 TrafficStart();
             }
-
         }
-
+        
         public void StartMovingBack()
         {
             _isMovingForward = false;

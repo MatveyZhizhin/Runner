@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7209614f-fe99-4b02-8500-5c786a392fac" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Runner/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Runner/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Army/PlayerArmy/PlayerArmyMover.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Army/PlayerArmy/PlayerArmyMover.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Balance/BalanceCounter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Balance/BalanceCounter.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +33,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;перемещение&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Balance&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   },
   &quot;keyToStringList&quot;: {
