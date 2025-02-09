@@ -26,8 +26,7 @@ namespace Balance
             if (count > _balance) return;
          
             _balance -= count;
-            Changed?.Invoke(_balance.ToString());
-            
+            Changed?.Invoke(_balance.ToString());        
         }     
     }
 }
