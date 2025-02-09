@@ -13,7 +13,7 @@ namespace Balance
 
         private void Start()
         {
-            BalanceIncrease(0);
+            IncreaseBalance(0);
         }
 
         public void IncreaseBalance(int count)
