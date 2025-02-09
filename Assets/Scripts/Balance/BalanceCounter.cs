@@ -28,8 +28,6 @@ namespace Balance
             _balance -= count;
             Changed?.Invoke(_balance.ToString());
             
-        }
-        
-        
+        }     
     }
 }
