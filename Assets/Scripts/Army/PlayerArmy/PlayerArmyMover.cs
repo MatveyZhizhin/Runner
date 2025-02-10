@@ -7,6 +7,7 @@ namespace Army.PlayerArmy {
         [SerializeField] private float _speed;
         [SerializeField] private float _speedForLateralMovement;
         [SerializeField] private Joystick _joystick;
+        
 
         [SerializeField] private float _stopDistance;
         [SerializeField] private Transform _stopPoint;
@@ -39,7 +40,7 @@ namespace Army.PlayerArmy {
             var moveHorizontal = _joystick.Horizontal;
 
             var movement = new Vector3(moveHorizontal, 0f, speed * Time.deltaTime);
-            transform.position = transform.position + movement * _speedForLateralMovement * Time.deltaTime;
+            transform.Translate(movement * _speedForLateralMovement * Time.deltaTime);
         }
 
         private void FindEnemyArmy()
