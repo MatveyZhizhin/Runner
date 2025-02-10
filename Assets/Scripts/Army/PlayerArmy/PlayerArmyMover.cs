@@ -39,7 +39,7 @@ namespace Army.PlayerArmy {
         {
             var moveHorizontal = _joystick.Horizontal;
 
-            var movement = new Vector3(moveHorizontal, 0f, speed * Time.deltaTime);
+            var movement = new Vector3(speed, 0f, -moveHorizontal);
             transform.Translate(movement * _speedForLateralMovement * Time.deltaTime);
         }
 
