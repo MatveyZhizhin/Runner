@@ -170,7 +170,7 @@ MonoBehaviour:
   - {fileID: 1625834902617573256, guid: a1daf8796c732d44080e038b6414e9bf, type: 3}
   - {fileID: 1648988595277167366, guid: dac773ab1efbe6e47b31dd789472fd54, type: 3}
   - {fileID: -4846223783559481227, guid: 75bfb4251178c4d42b4f528ea90bea76, type: 3}
-  - {fileID: 3218777333012425075, guid: 543a5c5aaf65be4479024950e0045570, type: 3}
+  - {fileID: -3832719022353012147, guid: 543a5c5aaf65be4479024950e0045570, type: 3}
   _isLastSegment: 0
 --- !u!65 &6103887493696943328
 BoxCollider:
