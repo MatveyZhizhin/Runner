@@ -136,21 +136,9 @@ PrefabInstance:
       value: PlayerArmy
       objectReference: {fileID: 0}
     - target: {fileID: 1205421734288411050, guid: 00cacd98acc0c1e40a1ad0080f714d34, type: 3}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1205421734288411050, guid: 00cacd98acc0c1e40a1ad0080f714d34, type: 3}
       propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1782625904}
-    - target: {fileID: 1205421734288411050, guid: 00cacd98acc0c1e40a1ad0080f714d34, type: 3}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StopAllCoroutines
-      objectReference: {fileID: 0}
-    - target: {fileID: 1205421734288411050, guid: 00cacd98acc0c1e40a1ad0080f714d34, type: 3}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.MonoBehaviour, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 4327127914500264794, guid: 00cacd98acc0c1e40a1ad0080f714d34, type: 3}
       propertyPath: m_LocalPosition.x
       value: 385.14322
@@ -192,17 +180,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4367911839955768236, guid: 00cacd98acc0c1e40a1ad0080f714d34, type: 3}
-      propertyPath: _speed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4367911839955768236, guid: 00cacd98acc0c1e40a1ad0080f714d34, type: 3}
       propertyPath: _joystick
       value: 
       objectReference: {fileID: 1145091880}
-    - target: {fileID: 7323831626419169836, guid: 00cacd98acc0c1e40a1ad0080f714d34, type: 3}
-      propertyPath: _damage
-      value: 3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

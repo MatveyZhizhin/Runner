@@ -112,11 +112,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 082ea685d3f78d243b2b0e3bacda3638, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 60
+  _speed: 1
   _speedForLateralMovement: 5
   _joystick: {fileID: 0}
   _stopDistance: 10.3
   _stopPoint: {fileID: 7019130461767896650}
+  _obstacles:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &7323831626419169836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,7 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56681c7d901d1bf418fe102c72b75068, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 5
+  _damage: 3
   _attackDistance: 17.2
   _attackRate: 0.1
   _attackableObjects:
