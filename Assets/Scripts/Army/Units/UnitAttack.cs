@@ -1,4 +1,3 @@
-using Army.Units;
 using UnityEngine;
 
 namespace Army.Units

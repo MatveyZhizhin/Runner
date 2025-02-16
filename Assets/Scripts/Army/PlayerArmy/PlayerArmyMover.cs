@@ -13,6 +13,7 @@ namespace Army.PlayerArmy {
 
         [SerializeField] private float _stopDistance;
         [SerializeField] private Transform _stopPoint;
+        [SerializeField] private LayerMask _obstacles;
 
         private bool _isMoving = true;
         private bool _isMovingForward = true;
@@ -50,17 +51,11 @@ namespace Army.PlayerArmy {
             Ray ray = new Ray(_stopPoint.position, _stopPoint.forward);
             RaycastHit hitInfo;
 
-            if (Physics.Raycast(ray, out hitInfo, _stopDistance))
+            if (Physics.Raycast(ray, out hitInfo, _stopDistance, _obstacles))
             {
                 if (hitInfo.collider != null)
-                {
-                    if (hitInfo.collider.TryGetComponent(out ArmyManager armyManager))
-                    {
-                        if (armyManager.GetComponentInChildren<Unit>().UnitType == UnitTypes.Enemy)
-                        {
-                            TrafficStop();
-                        }                  
-                    }
+                {                                            
+                   TrafficStop();                                       
                 }               
             }
             else

@@ -4,6 +4,7 @@ namespace Army.Units
     {
         Player, 
         Neutral,
-        Enemy
+        Enemy,
+        Boss
     }
 }
