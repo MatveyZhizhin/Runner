@@ -7,6 +7,7 @@ namespace Road.SpawnOfObjects
         Obstacle,
         NeutralArmy,
         EnemyArmy,
-        Boss
+        Boss,
+        DestructibleObstacle
     }
 }
