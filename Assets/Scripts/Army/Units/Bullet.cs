@@ -7,12 +7,13 @@ namespace Army.Units
     public class Bullet : MonoBehaviour
     {
         private int _damage;
+        [SerializeField] private float _speed;
+
         private LayerMask _attackableObjects;
         private UnitTypes _unitType;
 
         [SerializeField] private float _distance;
-        [SerializeField] private float _lifeTime;
-        [SerializeField] private float _speed;
+        [SerializeField] private float _lifeTime; 
 
         public void SetInformation(int damage, LayerMask attackableObjects, UnitTypes unitType)
         {

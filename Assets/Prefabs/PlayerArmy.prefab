@@ -113,13 +113,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 1
-  _speedForLateralMovement: 5
+  _speedForLateralMovement: 10
   _joystick: {fileID: 0}
   _stopDistance: 10.3
   _stopPoint: {fileID: 7019130461767896650}
   _obstacles:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 448
 --- !u!114 &7323831626419169836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,7 +137,7 @@ MonoBehaviour:
   _attackRate: 0.1
   _attackableObjects:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
   _attackPoint: {fileID: 7019130461767896650}
 --- !u!65 &4951700051043260415
 BoxCollider:
