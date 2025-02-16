@@ -1,4 +1,5 @@
 using Army.Units;
+using System.Collections;
 using UnityEngine;
 
 namespace Army.PlayerArmy {
@@ -7,13 +8,14 @@ namespace Army.PlayerArmy {
         [SerializeField] private float _speed;
         [SerializeField] private float _speedForLateralMovement;
         [SerializeField] private Joystick _joystick;
-        
+        [SerializeField] private float _pushSpeed;
+        [SerializeField] private float _pushRate;
 
         [SerializeField] private float _stopDistance;
         [SerializeField] private Transform _stopPoint;
 
-        private bool _isMovingForward = true;
         private bool _isMoving = true;
+        private bool _isMovingForward = true;
 
         private void Update() {
             if (_isMoving)
@@ -24,7 +26,7 @@ namespace Army.PlayerArmy {
                 }
                 else
                 {
-                    Move(-_speed + 4);
+                    Move(-_speed - _pushSpeed);
                 }
             }
             else
@@ -66,14 +68,13 @@ namespace Army.PlayerArmy {
                 TrafficStart();
             }
         }
-        
-        public void StartMovingBack()
+
+       
+
+        public IEnumerator Pushing()
         {
             _isMovingForward = false;
-        }
-
-        public void StartMovingForward()
-        {
+            yield return new WaitForSeconds(_pushRate);
             _isMovingForward = true;
         }
 
