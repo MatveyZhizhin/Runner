@@ -7,17 +7,18 @@ namespace Balance
     public class BalanceCounter : MonoBehaviour, ITextUser
     {
         [SerializeField] private long _balance;
+        [SerializeField] private long _howMuchWillTheBalanceIncrease;
         public event Action<string> Changed;
 
 
         private void Start()
         {
-            IncreaseBalance(0);
+            IncreaseBalance();
         }
 
-        public void IncreaseBalance(int count)
+        public void IncreaseBalance()
         {
-            _balance += count;
+            _balance += _howMuchWillTheBalanceIncrease;
             Changed?.Invoke(_balance.ToString());
         }
 
