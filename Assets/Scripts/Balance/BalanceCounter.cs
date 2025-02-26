@@ -12,12 +12,12 @@ namespace Balance
 
         private void Start()
         {
-            IncreaseBalance(0);
+            IncreaseBalance(0);  //когда сделаешь сохранение допиши сюда вызов числа из сохранёных
         }
 
-        public void IncreaseBalance(int count)
+        public void IncreaseBalance(int howMuchWillTheBalanceIncrease)
         {
-            _balance += count;
+            _balance += howMuchWillTheBalanceIncrease;
             Changed?.Invoke(_balance.ToString());
         }
 
