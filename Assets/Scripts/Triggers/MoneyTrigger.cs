@@ -18,7 +18,7 @@ namespace Triggers
 
         protected override void OnEnter(PlayerArmyMover triggered)
         {
-            _balance.IncreaseBalance(_howMuchWillTheBalanceIncrease.get());
+            _balance.IncreaseBalance(_howMuchWillTheBalanceIncrease.Get());
             gameObject.SetActive(false);
         }
     }
