@@ -51,6 +51,14 @@ namespace HealthOfObjects
             }
                 _armyManager.RemoveUnit(difference);
         }
+        public void Heal(int percent)
+        {
+            if (_currentHealth < _startHealth)
+            {
+
+                AddHealth(_startHealth / 100 * percent);
+            }
+        }
     }
 }
 
