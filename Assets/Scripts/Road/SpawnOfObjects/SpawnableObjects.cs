@@ -9,6 +9,7 @@ namespace Road.SpawnOfObjects
         EnemyArmy,
         Boss,
         DestructibleObstacle,
-        Money
+        Money,
+        MedKit
     }
 }
