@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Managers;
 using Random = UnityEngine.Random;
 
 namespace Road.SpawnOfObjects
@@ -10,33 +11,36 @@ namespace Road.SpawnOfObjects
         [SerializeField] private Transform[] _spawnPoints;
         [SerializeField] private SpawnableObject[] _spawnableObjects;
 
+        public int SpawnPointsCount => _spawnPoints.Length;
+
         private SpawnManager _spawnManager;
 
         [SerializeField] private bool _isLastSegment;
+
+        public bool IsLastSegment => _isLastSegment;
 
         private void Awake()
         {
             _spawnManager = FindObjectOfType<SpawnManager>();
         }
 
-        private void Start()
+        public void Spawn()
         {
-            Spawn();
-        }
-
-        private void Spawn()
-        {
-            var objectTypes = Enum.GetValues(typeof(SpawnableObjects));
             var spawnedObjects = new List<SpawnableObject>();
             foreach (var spawnPoint in _spawnPoints)
             {
-                var newObjectType = (SpawnableObjects)objectTypes.GetValue(Random.Range(0, objectTypes.Length));
+                var newObjectType = GetRandomType();
 
                 if (!_spawnManager.HasSpace())
                     newObjectType = SpawnableObjects.Nothing;
 
                 if(_isLastSegment)
                     newObjectType = SpawnableObjects.Boss;
+
+                if (newObjectType == SpawnableObjects.Boss && !_isLastSegment)
+                    while (newObjectType == SpawnableObjects.Boss)
+                        newObjectType = GetRandomType();
+                    
 
                 foreach (var spawnableObject in _spawnableObjects)
                 {               
@@ -69,6 +73,34 @@ namespace Road.SpawnOfObjects
 
                 Spawn();
             }         
+        }
+
+        public void Spawn(SpawnableObjects[] types)
+        {
+            var spawnedObjects = new List<SpawnableObject>();
+
+            for (int i = 0; i < _spawnPoints.Length; i++)
+            {
+                foreach (var spawnableObject in _spawnableObjects)
+                {
+                    if (spawnableObject.ObjectType == types[i])
+                    {
+                        var newObject = Instantiate(spawnableObject, _spawnPoints[i].position, spawnableObject.transform.rotation);
+                        newObject.transform.parent = transform;
+                        spawnedObjects.Add(newObject);
+                        _spawnManager.AddObject(newObject);
+
+                        break;
+                    }
+                }
+            }
+        }
+
+        private SpawnableObjects GetRandomType()
+        {
+            var objectTypes = Enum.GetValues(typeof(SpawnableObjects));
+
+            return (SpawnableObjects)objectTypes.GetValue(Random.Range(0, objectTypes.Length));
         }
     }
 }
