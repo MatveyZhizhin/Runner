@@ -19,12 +19,6 @@ namespace Managers
             _saveManager = FindObjectOfType<SaveManager>();
         }
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-                RestartLevel();
-        }
-
         public void ChangeLevel()
         {
             CurrentLevel++;

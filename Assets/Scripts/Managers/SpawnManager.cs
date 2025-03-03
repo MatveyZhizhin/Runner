@@ -68,8 +68,9 @@ namespace Managers
             for (int i = 0; i < _roadGenerator.GetSpawnPointsCount(isLastSegment); i++)
             {
                 types.Add(_spawnableTypes[i]);
-                _spawnableTypes.RemoveAt(i);
             }
+
+            _spawnableTypes.RemoveRange(0, _roadGenerator.GetSpawnPointsCount(isLastSegment));
 
             return types.ToArray();
         }

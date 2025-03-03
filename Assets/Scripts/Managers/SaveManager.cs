@@ -33,6 +33,8 @@ namespace Managers
             }
 
             YandexGame.savesData.IsLevelRestarted = _levelManager.IsLevelRestarted;
+
+            YandexGame.SaveProgress();
         }
 
         private void Load()
