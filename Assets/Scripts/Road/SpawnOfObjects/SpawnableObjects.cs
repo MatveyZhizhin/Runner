@@ -8,6 +8,8 @@ namespace Road.SpawnOfObjects
         NeutralArmy,
         EnemyArmy,
         Boss,
-        DestructibleObstacle
+        DestructibleObstacle,
+        Money,
+        MedKit
     }
 }
