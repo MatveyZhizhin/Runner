@@ -1,8 +1,5 @@
 using Road;
 using Road.SpawnOfObjects;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using YG;
 
@@ -21,6 +18,12 @@ namespace Managers
             _roadGenerator = FindObjectOfType<RoadGenerator>();
             _levelManager = FindObjectOfType<LevelManager>();
             Load();
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+                ResetProgress();
         }
 
         public void Save()
@@ -48,7 +51,14 @@ namespace Managers
 
             _spawnManager.SetSpawnableTypes(spawnableTypes);
 
-            _levelManager.IsLevelRestarted = YandexGame.savesData.IsLevelRestarted;
+            _levelManager.IsLevelRestarted = YandexGame.savesData.IsLevelRestarted;          
+        }
+
+        private void ResetProgress()
+        {
+            _levelManager.IsLevelRestarted = false;
+            YandexGame.ResetSaveProgress();
+            Save();
         }
     }
 }

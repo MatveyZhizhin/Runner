@@ -1,4 +1,7 @@
 using System.Collections.Generic;
+using Army;
+using Balance;
+using HealthOfObjects;
 using Road;
 using Road.SpawnOfObjects;
 using UnityEngine;
@@ -14,11 +17,13 @@ namespace Managers
 
         private RoadGenerator _roadGenerator;
         private LevelManager _levelManager;
+        private BalanceCounter _balanceCounter;
 
         private void Awake()
         {
             _roadGenerator = FindObjectOfType<RoadGenerator>();
             _levelManager = FindObjectOfType<LevelManager>();
+            _balanceCounter = FindObjectOfType<BalanceCounter>();
         }
 
         private void Start()
@@ -80,6 +85,24 @@ namespace Managers
             _spawnedObjects.Add(spawnedObject);
         }
 
+        public void DisableObject(SpawnableObject spawnedObject)
+        {
+            if (spawnedObject.TryGetComponent(out NumberOfCoins numberOfCoins))
+            {
+                if (spawnedObject.TryGetComponent(out ArmyManager armyManager))
+                {
+                    _balanceCounter.IncreaseLevelBalance(numberOfCoins.HowMuchWillTheBalanceIncrease * armyManager.AmountOfUnits);
+                }
+                else
+                {
+                    _balanceCounter.IncreaseLevelBalance(numberOfCoins.HowMuchWillTheBalanceIncrease);
+                    _levelManager.ChangeLevel(true);
+                }
+            }            
+            
+            spawnedObject.gameObject.SetActive(false);
+        }
+
         public void RemoveObject(SpawnableObject spawnedObject)
         {
             _spawnedObjects.Remove(spawnedObject);
@@ -92,7 +115,7 @@ namespace Managers
 
             foreach (var spawnedObject in _spawnedObjects)
             {
-                if (spawnedObject.ObjectType != SpawnableObjects.Nothing)
+                if (spawnedObject.ObjectType != SpawnableObjects.Nothing && spawnedObject.ObjectType != SpawnableObjects.Boss)
                     spawnedObstacles.Add(spawnedObject);
             }
 

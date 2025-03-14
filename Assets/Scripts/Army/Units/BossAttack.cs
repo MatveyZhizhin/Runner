@@ -25,14 +25,21 @@ namespace Army.Units
 
         private void Update()
         {
-            if (_isAttacking)
-                transform.LookAt(_playerArmy.transform);
+            LookAtPlayer();
         }
 
         public override void Fire(int damage, LayerMask attackableObjects)
         {
             var newBullet = Instantiate(_bulletPrefab, _spawnPoint.position, _spawnPoint.rotation);
             newBullet.SetInformation(damage, attackableObjects, UnitType);
+        }
+
+        private void LookAtPlayer()
+        {
+            if (_isAttacking)
+            {
+                transform.LookAt(_playerArmy.transform);
+            }             
         }
 
         public IEnumerator Attack()

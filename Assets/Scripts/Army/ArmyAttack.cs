@@ -1,6 +1,4 @@
 using System.Collections;
-using Army.PlayerArmy;
-using Army.Units;
 using HealthOfObjects;
 using UnityEngine;
 
@@ -26,7 +24,7 @@ namespace Army
             TryGetComponent(out _armyManager);
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             FindAttackableObjects();
         }
@@ -39,6 +37,8 @@ namespace Army
 
             if (Physics.Raycast(ray, out hitInfo, _attackDistance, _attackableObjects))
             {
+                Debug.Log(hitInfo.collider.gameObject);
+
                 if (hitInfo.collider != null)
                 {
                     if (hitInfo.collider.TryGetComponent(out Health health))

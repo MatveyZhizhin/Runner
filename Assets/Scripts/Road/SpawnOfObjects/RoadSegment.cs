@@ -31,23 +31,23 @@ namespace Road.SpawnOfObjects
             {
                 var newObjectType = GetRandomType();
 
-                if (!_spawnManager.HasSpace())
-                    newObjectType = SpawnableObjects.Nothing;
-
-                if(_isLastSegment)
+                if (_isLastSegment)
                     newObjectType = SpawnableObjects.Boss;
 
-                if (newObjectType == SpawnableObjects.Boss && !_isLastSegment)
-                    while (newObjectType == SpawnableObjects.Boss)
-                        newObjectType = GetRandomType();
-                    
-
+                if (!_isLastSegment)
+                {
+                    if (!_spawnManager.HasSpace())
+                        newObjectType = SpawnableObjects.Nothing;
+                    if (!_isLastSegment)
+                        while (newObjectType == SpawnableObjects.Boss)
+                            newObjectType = GetRandomType();
+                }                                              
+                   
                 foreach (var spawnableObject in _spawnableObjects)
-                {               
+                {                      
                     if (spawnableObject.ObjectType == newObjectType)
                     {
                       var newObject = Instantiate(spawnableObject, spawnPoint.position, spawnableObject.transform.rotation);
-                      newObject.transform.parent = transform;
                       spawnedObjects.Add(newObject);
                       _spawnManager.AddObject(newObject);
 
@@ -86,7 +86,6 @@ namespace Road.SpawnOfObjects
                     if (spawnableObject.ObjectType == types[i])
                     {
                         var newObject = Instantiate(spawnableObject, _spawnPoints[i].position, spawnableObject.transform.rotation);
-                        newObject.transform.parent = transform;
                         spawnedObjects.Add(newObject);
                         _spawnManager.AddObject(newObject);
 
