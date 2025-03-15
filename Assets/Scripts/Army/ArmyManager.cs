@@ -14,6 +14,8 @@ namespace Army
         [SerializeField] private int _maximumAmountOfUnitsInRow;
         [SerializeField] private float _unitScaleMultiplier = 1;
 
+        public int AmountOfUnits => _spawnedUnits.Count;
+
         private Vector3 _unitSize;
 
         private void Awake()

@@ -18,6 +18,9 @@ namespace YG
 
         // Ваши сохранения
 
+        public int[] SpawnableTypes = new int[30];
+        public bool IsLevelRestarted = false;
+
         // ...
 
         // Поля (сохранения) можно удалять и создавать новые. При обновлении игры сохранения ломаться не должны

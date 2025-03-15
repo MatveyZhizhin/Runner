@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d83ff7d037f68146a672d8876ce6186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _howMuchWillTheBalanceIncreasep: 10
+  _howMuchWillTheBalanceIncrease: 10
 --- !u!114 &5843761598713406799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 585d098bb22516448bd0b27bf9ed2f44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectType: 6
+  ObjectType: 5
 --- !u!65 &7697836547160560183
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -6,10 +6,10 @@ namespace Road.SpawnOfObjects
         Nothing,
         Obstacle,
         NeutralArmy,
-        EnemyArmy,
-        Boss,
+        EnemyArmy,       
         DestructibleObstacle,
         Money,
-        MedKit
+        MedKit,
+        Boss
     }
 }

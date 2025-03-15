@@ -12,7 +12,5 @@ namespace HealthOfObjects
             _startHealth = Random.Range(_minimumStartHealth, _maximumStartHealth);
             AddHealth(_startHealth);
         }
-
-
     }
 }

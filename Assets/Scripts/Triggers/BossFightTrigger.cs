@@ -7,7 +7,7 @@ namespace Triggers
     {
         private BossAttack _bossAttack;
 
-        private void Awake()
+        private void Start()
         {
             _bossAttack = FindObjectOfType<BossAttack>();
         }

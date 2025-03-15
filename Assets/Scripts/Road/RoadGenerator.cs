@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Road.SpawnOfObjects;
+using System.Threading;
 
 namespace Road
 {
@@ -14,9 +15,24 @@ namespace Road
 
         [SerializeField] private int _roadSegmentCount;
 
+        public int RoadSegmentCount => _roadSegmentCount;
+
+        public RoadSegment[] GetRoadSegments()
+        {
+            return _roadSegments.ToArray();
+        }
+
         private void Start()
         {
             GenerateRoad();
+        }
+
+        public int GetSpawnPointsCount(bool isLastSegment)
+        {
+            if (isLastSegment)
+                return _lastSegmentPrefab.SpawnPointsCount;
+
+            return _roadSegmentPrefab.SpawnPointsCount;
         }
 
         private void GenerateRoad()
