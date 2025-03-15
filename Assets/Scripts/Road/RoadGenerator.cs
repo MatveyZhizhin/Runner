@@ -22,7 +22,7 @@ namespace Road
             return _roadSegments.ToArray();
         }
 
-        private void Start()
+        private void Awake()
         {
             GenerateRoad();
         }

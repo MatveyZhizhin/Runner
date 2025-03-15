@@ -68,7 +68,7 @@ namespace Army.Units
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawRay(transform.position, transform.forward * _distance);
+            Gizmos.DrawRay(transform.position, Vector3.forward * _distance);
         }
     }
 }

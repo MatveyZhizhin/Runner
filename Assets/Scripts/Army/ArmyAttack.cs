@@ -1,6 +1,7 @@
 using System.Collections;
 using HealthOfObjects;
 using UnityEngine;
+using AnimatorsConstans;
 
 namespace Army
 {
@@ -15,7 +16,7 @@ namespace Army
 
         [SerializeField] private Transform _attackPoint;
 
-        private ArmyManager _armyManager;
+        private ArmyManager _armyManager;      
 
         private bool _isAttacking = false;
 
@@ -46,7 +47,6 @@ namespace Army
                         if (!_isAttacking)
                         {
                             StartCoroutine(Attack());
-                            _isAttacking = true;
                         }                      
                     }                    
                 }               
@@ -55,6 +55,13 @@ namespace Army
             {
                 StopAllCoroutines();
                 _isAttacking = false;
+
+                var units = _armyManager.GetUnits();
+
+                foreach (var unit in units)
+                {
+                    unit.GetComponent<Animator>().SetBool(CharacterAnimationConstans.IsAttacking, _isAttacking);
+                }
             }
         }
 
@@ -66,7 +73,11 @@ namespace Army
             {
                 foreach (var unit in units)
                 {
-                    unit.Fire(_damage, _attackableObjects);
+                    if (unit != null)
+                    {
+                        unit.GetComponent<Animator>().SetBool(CharacterAnimationConstans.IsAttacking, _isAttacking);
+                        unit.Fire(_damage, _attackableObjects);
+                    }                  
                 }
 
                 yield return new WaitForSeconds(_attackRate);

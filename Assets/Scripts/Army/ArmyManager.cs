@@ -1,3 +1,4 @@
+using AnimatorsConstans;
 using Army.Units;
 using System;
 using System.Collections.Generic;
@@ -12,21 +13,16 @@ namespace Army
 
         [SerializeField] private Transform _spawnPoint;
         [SerializeField] private int _maximumAmountOfUnitsInRow;
-        [SerializeField] private float _unitScaleMultiplier = 1;
+        [SerializeField] private float _gapBetweenUnits = 1;
+
+        [SerializeField] private float _unitDestroyTime;
 
         public int AmountOfUnits => _spawnedUnits.Count;
-
-        private Vector3 _unitSize;
-
-        private void Awake()
-        {
-            _unitSize = _unitPrefab.transform.localScale * _unitScaleMultiplier;
-        }
 
         private void Start()
         {
             if (_unitPrefab.UnitType != UnitTypes.Player)
-                ChangeSpawnPointPosition(_spawnPoint.localPosition.x - _unitSize.x, _spawnPoint.localPosition.z + _unitSize.z * (_maximumAmountOfUnitsInRow / 2));
+                ChangeSpawnPointPosition(_spawnPoint.localPosition.x - _gapBetweenUnits, _spawnPoint.localPosition.z + _gapBetweenUnits * (_maximumAmountOfUnitsInRow / 2));
         }
 
         public Unit[] GetUnits()
@@ -41,7 +37,7 @@ namespace Army
                 var newUnit = Instantiate(_unitPrefab, _spawnPoint.position, _spawnPoint.rotation);
                 newUnit.transform.parent = transform;
                 _spawnedUnits.Add(newUnit);
-                ChangeSpawnPointPosition(_spawnPoint.localPosition.x - _unitSize.x, _spawnPoint.localPosition.z + _unitSize.z * (_maximumAmountOfUnitsInRow / 2));
+                ChangeSpawnPointPosition(_spawnPoint.localPosition.x - _gapBetweenUnits, _spawnPoint.localPosition.z + _gapBetweenUnits * (_maximumAmountOfUnitsInRow / 2));
                 amount -= 1;
             }
 
@@ -50,12 +46,12 @@ namespace Army
                 var newUnit = Instantiate(_unitPrefab, _spawnPoint.position, _spawnPoint.rotation);
                 newUnit.transform.parent = transform;
                 _spawnedUnits.Add(newUnit);
-                ChangeSpawnPointPosition(_spawnPoint.localPosition.x, _spawnPoint.localPosition.z - _unitSize.z);
+                ChangeSpawnPointPosition(_spawnPoint.localPosition.x, _spawnPoint.localPosition.z - _gapBetweenUnits);
 
 
                 if (CalculateCurrentAmountOfUnitsInLastRow() >= _maximumAmountOfUnitsInRow)
                 {
-                    ChangeSpawnPointPosition(_spawnPoint.localPosition.x - _unitSize.x, _spawnPoint.localPosition.z + _unitSize.z * _maximumAmountOfUnitsInRow);
+                    ChangeSpawnPointPosition(_spawnPoint.localPosition.x - _gapBetweenUnits, _spawnPoint.localPosition.z + _gapBetweenUnits * _maximumAmountOfUnitsInRow);
                 }
             }
         }
@@ -75,7 +71,9 @@ namespace Army
 
             for (int i = _spawnedUnits.Count; i > startSpawnedUnitsCount - amount; i--)
             {
-                Destroy(_spawnedUnits[i - 1].gameObject);
+                if (_unitPrefab.UnitType != UnitTypes.Neutral)
+                    _spawnedUnits[i - 1].GetComponent<Animator>().SetTrigger(CharacterAnimationConstans.Dead);
+                Destroy(_spawnedUnits[i - 1].gameObject, _unitDestroyTime);
                 ChangeSpawnPointPosition(_spawnedUnits[i - 1].transform.localPosition.x, _spawnedUnits[i - 1].transform.localPosition.z);
                 _spawnedUnits.RemoveAt(i - 1);
             }

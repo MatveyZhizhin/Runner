@@ -54,10 +54,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d24c8bb293216a24788fd824e79beb18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _unitPrefab: {fileID: 3049584506544813564, guid: 603fc9028bece604d820aec339e90ea4, type: 3}
+  _unitPrefab: {fileID: 7403394495479114985, guid: 603fc9028bece604d820aec339e90ea4, type: 3}
   _spawnPoint: {fileID: 2691689467860856096}
   _maximumAmountOfUnitsInRow: 5
-  _unitScaleMultiplier: 1.5
+  _gapBetweenUnits: 1.5
+  _unitDestroyTime: 2
 --- !u!114 &1205421734288411050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,19 +74,7 @@ MonoBehaviour:
   _startHealth: 1101
   OnDeath:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.MonoBehaviour, UnityEngine
-        m_MethodName: StopAllCoroutines
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   _healthPerUnit: 100
 --- !u!114 &308500845877874429
 MonoBehaviour:
@@ -115,8 +104,8 @@ MonoBehaviour:
   _speed: 1
   _speedForLateralMovement: 10
   _joystick: {fileID: 0}
-  _pushSpeed: 0
-  _pushRate: 0
+  _pushSpeed: 2
+  _pushRate: 0.5
   _stopDistance: 10.3
   _stopPoint: {fileID: 7019130461767896650}
   _obstacles:
@@ -139,7 +128,7 @@ MonoBehaviour:
   _attackRate: 0.1
   _attackableObjects:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 704
   _attackPoint: {fileID: 7019130461767896650}
 --- !u!65 &4951700051043260415
 BoxCollider:
@@ -481,7 +470,7 @@ Transform:
   m_GameObject: {fileID: 7978941358195068437}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071059, z: -0, w: 0.7071078}
-  m_LocalPosition: {x: 1.23, y: 0.25, z: 0.000010937452}
+  m_LocalPosition: {x: 1.73, y: 0.25, z: 0.000012233853}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -498,6 +487,7 @@ GameObject:
   - component: {fileID: 6205574944190483423}
   - component: {fileID: 5559021645336317695}
   - component: {fileID: 7443153899943202060}
+  - component: {fileID: 495740271685300498}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -579,3 +569,17 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8424228104850847037}
   m_Enabled: 1
+--- !u!114 &495740271685300498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8424228104850847037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d630e73304846b645834b0f310319ba9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _balance: 0
+  _levelBalance: 0
