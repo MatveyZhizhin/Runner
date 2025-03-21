@@ -6,7 +6,7 @@ namespace Balance
 { 
     public class BalanceCounter : MonoBehaviour, ITextUser
     {
-        [SerializeField] private long _balance;
+        [SerializeField] private int _balance;
         public event Action<string> Changed;
 
 
@@ -23,10 +23,15 @@ namespace Balance
 
         public void DecreaseBalance(int count)
         {
-            if (count > _balance) return;
+            if (count >= _balance) return;
          
             _balance -= count;
             Changed?.Invoke(_balance.ToString());        
         }     
+
+        public int GetBalance()
+        {
+            return _balance;
+        }
     }
 }
