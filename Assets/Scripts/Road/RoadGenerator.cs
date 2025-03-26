@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Road.SpawnOfObjects;
-using System.Threading;
 
 namespace Road
 {

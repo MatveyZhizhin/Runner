@@ -20,6 +20,8 @@ namespace YG
 
         public int[] SpawnableTypes = new int[30];
         public bool IsLevelRestarted = false;
+        public long Balance = 0;
+        public int CurrentBossIndex = 0;
 
         // ...
 

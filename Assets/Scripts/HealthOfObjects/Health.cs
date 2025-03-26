@@ -1,7 +1,7 @@
+using Managers;
 using System;
 using UI;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace HealthOfObjects
 {
@@ -12,13 +12,15 @@ namespace HealthOfObjects
 
         public int CurrentHealth => _currentHealth;
 
-        [SerializeField] private UnityEvent OnDeath;
         public event Action<string> Changed;
+
+        protected SpawnManager _spawnManager;
 
         private void Start()
         {
             AddHealth(_startHealth);
-        }
+            _spawnManager = FindObjectOfType<SpawnManager>();
+        }      
 
         public virtual void AddHealth(int additionalHealth)
         {
@@ -35,8 +37,8 @@ namespace HealthOfObjects
 
             Changed?.Invoke(_currentHealth.ToString());
 
-            if (_currentHealth <= 0)
-                OnDeath?.Invoke();            
+            if (_currentHealth <= 0)     
+                _spawnManager.DisableObject(this);
         }
     }
 }

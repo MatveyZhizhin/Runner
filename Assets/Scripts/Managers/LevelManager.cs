@@ -1,32 +1,32 @@
-using Army.PlayerArmy;
+using SkinChangers;
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
-
 
 namespace Managers
 {
     public class LevelManager : MonoBehaviour
     {
         [field: SerializeField] public int CurrentLevel { get; set; } = 1;
-        [SerializeField] private int _mainSceneIndex = 0;
-        [SerializeField] private UnityEvent OnLevelChange;
         [SerializeField] private UnityEvent OnLevelStart;
+        [SerializeField] private UnityEvent OnLevelRestart;
+        [SerializeField] private BossSkinChanger _bossSkinChanger;
 
-        [SerializeField] private GameObject[] _bosses;
-
-        private bool _isLevelRestarted;
-        private int _currentBossIndex = 0;
+        private bool _isLevelRestarted = true;
 
         public bool IsLevelRestarted { get => _isLevelRestarted; set => _isLevelRestarted = value; }
 
         public bool IsBossFightStarted { get; set; }
 
-        private SaveManager _saveManager; 
+        public event Action<bool> LevelChanged;
+
+        private SaveManager _saveManager;
 
         private void Start()
         {
-            //ChangeBoss(_currentBossIndex);
+            _isLevelRestarted = true;
+            _saveManager.Save();
         }
 
         private void Awake()
@@ -43,10 +43,10 @@ namespace Managers
 
             if (isBossDead)
             {
-                _currentBossIndex = Random.Range(0, _bosses.Length - 1);
+                _bossSkinChanger.ChangeCurrentBossIndex();
             }
 
-            OnLevelChange?.Invoke();
+            LevelChanged?.Invoke(isBossDead);
 
             _isLevelRestarted = false;
             _saveManager.Save();
@@ -55,29 +55,22 @@ namespace Managers
         public void StartLevel()
         {
             OnLevelStart?.Invoke();
-            _isLevelRestarted = true;
             _saveManager.Save();
         }
-
-        private void ChangeBoss(int index)
-        {
-            foreach (var boss in _bosses)
-            {
-                if (boss.activeInHierarchy)
-                {
-                    boss.SetActive(false);
-                    _bosses[index].SetActive(true);
-                    break;
-                }
-            }
-        }
-
 
         public void RestartLevel()
         {
-            _isLevelRestarted = true;
+            if (IsBossFightStarted)
+                return;
+
             _saveManager.Save();
-            SceneManager.LoadScene(_mainSceneIndex);
+            OnLevelRestart?.Invoke();
+            Time.timeScale = 0f;          
+        }
+
+        public void RestartScene(int index)
+        {
+            SceneManager.LoadScene(index);
         }
     }
 }
