@@ -29,7 +29,7 @@ namespace Army.Units
 
         private void Move()
         {
-            Ray ray = new Ray(transform.position, transform.forward);
+            Ray ray = new Ray(transform.position, -transform.right);
             RaycastHit hitInfo;
 
             if (Physics.Raycast(ray, out hitInfo, _distance, _attackableObjects))
@@ -62,13 +62,13 @@ namespace Army.Units
             }
             Destroy(gameObject, _lifeTime);
 
-            transform.Translate(Vector3.forward * _speed * Time.deltaTime);
+            transform.Translate(-Vector3.right * _speed * Time.deltaTime);
         }
 
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawRay(transform.position, Vector3.forward * _distance);
+            Gizmos.DrawRay(transform.position, -transform.right * _distance);
         }
     }
 }

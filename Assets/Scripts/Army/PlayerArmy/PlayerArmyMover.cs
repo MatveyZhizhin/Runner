@@ -1,6 +1,7 @@
 using Army.Units;
 using System.Collections;
 using UnityEngine;
+using AnimatorsConstans;
 
 namespace Army.PlayerArmy {
     public class PlayerArmyMover : MonoBehaviour
@@ -18,21 +19,31 @@ namespace Army.PlayerArmy {
         private bool _isMoving = true;
         private bool _isMovingForward = true;
 
+        private ArmyManager _armyManager;
+
+        private void Awake()
+        {
+            TryGetComponent(out _armyManager);
+        }
+
         private void Update() {
             if (_isMoving)
             {
                 if (_isMovingForward)
                 {
                     Move(_speed);
+                    ChangeUnitsState(true);
                 }
                 else
                 {
                     Move(-_speed - _pushSpeed);
+                    ChangeUnitsState(false);
                 }
             }
             else
             {
                 Move(0);
+                ChangeUnitsState(false);
             }
 
             FindEnemyArmy();
@@ -64,7 +75,13 @@ namespace Army.PlayerArmy {
             }
         }
 
-       
+        private void ChangeUnitsState(bool isRunning)
+        {
+            foreach (var unit in _armyManager.GetUnits())
+            {
+                unit.GetComponent<Animator>().SetBool(CharacterAnimationConstans.IsRunning, isRunning);
+            }
+        }
 
         public IEnumerator Pushing()
         {

@@ -55,10 +55,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitPrefab: {fileID: 7403394495479114985, guid: 603fc9028bece604d820aec339e90ea4, type: 3}
+  _playerPrefab: {fileID: 7403394495479114985, guid: 6e985824f358c7d4e9dc9cf20603122d, type: 3}
   _spawnPoint: {fileID: 2691689467860856096}
   _maximumAmountOfUnitsInRow: 5
   _gapBetweenUnits: 1.5
-  _unitDestroyTime: 2
+  _unitDestroyTime: 2.5
 --- !u!114 &1205421734288411050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,7 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damage: 3
   _attackDistance: 17.2
-  _attackRate: 0.1
+  _attackRate: 0.5
   _attackableObjects:
     serializedVersion: 2
     m_Bits: 704

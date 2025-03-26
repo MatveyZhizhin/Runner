@@ -24,13 +24,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 467710201063762921}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.6027904}
+  m_LocalRotation: {x: -0.7071069, y: 0.00000018636698, z: 0.70710677, w: -0.000000090182496}
+  m_LocalPosition: {x: -0.0003890384, y: -0.000037259964, z: 0.6029524}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1490581394948221573}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -180, y: 90, z: 0}
 --- !u!1 &1729617530594334704
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,7 +310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UnitType: 3
-  _bulletPrefab: {fileID: 4064162222133550866, guid: 80bdcde57b012f841aeba360f72e6ad5, type: 3}
+  _bulletPrefab: {fileID: 3550702081027947305, guid: f0cf79054637e9740a27f3bf50d2fda7, type: 3}
   _spawnPoint: {fileID: 5783448779415862382}
   _attackableObjects:
     serializedVersion: 2

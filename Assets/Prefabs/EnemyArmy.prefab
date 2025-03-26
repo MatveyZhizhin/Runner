@@ -350,10 +350,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d24c8bb293216a24788fd824e79beb18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _unitPrefab: {fileID: -2661606837954624866, guid: 21f42474ee4db6f4faa0d38fac75e261, type: 3}
+  _unitPrefab: {fileID: 5067933342262126569, guid: 21f42474ee4db6f4faa0d38fac75e261, type: 3}
   _spawnPoint: {fileID: 658818563328725282}
   _maximumAmountOfUnitsInRow: 5
-  _unitScaleMultiplier: 1.5
+  _gapBetweenUnits: 1
+  _unitDestroyTime: 2
 --- !u!114 &1188598237638386993
 MonoBehaviour:
   m_ObjectHideFlags: 0
