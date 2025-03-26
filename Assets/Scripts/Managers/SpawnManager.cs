@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Army;
+using Army.Units;
 using Balance;
 using HealthOfObjects;
 using Road;
@@ -85,7 +86,7 @@ namespace Managers
             _spawnedObjects.Add(spawnedObject);
         }
 
-        public void DisableObject(SpawnableObject spawnedObject)
+        public void DisableObject(Health spawnedObject)
         {
             if (spawnedObject.TryGetComponent(out NumberOfCoins numberOfCoins))
             {
@@ -93,8 +94,8 @@ namespace Managers
                 {
                     _balanceCounter.IncreaseLevelBalance(numberOfCoins.HowMuchWillTheBalanceIncrease * armyManager.AmountOfUnits);
                 }
-                else
-                {
+                else if (spawnedObject.TryGetComponent(out BossAttack bossAttack))
+                {                   
                     _balanceCounter.IncreaseLevelBalance(numberOfCoins.HowMuchWillTheBalanceIncrease);
                     _levelManager.ChangeLevel(true);
                 }

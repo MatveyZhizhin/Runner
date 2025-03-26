@@ -1,3 +1,4 @@
+using Managers;
 using UnityEngine;
 
 namespace HealthOfObjects
@@ -11,6 +12,7 @@ namespace HealthOfObjects
         {
             _startHealth = Random.Range(_minimumStartHealth, _maximumStartHealth);
             AddHealth(_startHealth);
+            _spawnManager = FindObjectOfType<SpawnManager>();
         }
     }
 }

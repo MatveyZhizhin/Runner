@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Road.SpawnOfObjects;
-using System.Threading;
 
 namespace Road
 {
@@ -22,7 +21,7 @@ namespace Road
             return _roadSegments.ToArray();
         }
 
-        private void Start()
+        private void Awake()
         {
             GenerateRoad();
         }

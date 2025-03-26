@@ -1,4 +1,3 @@
-using Army.Units;
 using System.Collections;
 using UnityEngine;
 
@@ -15,7 +14,7 @@ namespace Army.PlayerArmy {
         [SerializeField] private Transform _stopPoint;
         [SerializeField] private LayerMask _obstacles;
 
-        private bool _isMoving = true;
+        private bool _isMoving = false;
         private bool _isMovingForward = true;
 
         private void Update() {
