@@ -1,7 +1,6 @@
 using System.Collections;
 using HealthOfObjects;
 using UnityEngine;
-using AnimatorsConstans;
 
 namespace Army
 {

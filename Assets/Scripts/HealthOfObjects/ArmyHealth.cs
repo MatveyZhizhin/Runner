@@ -1,7 +1,6 @@
 using Army;
 using System.Linq;
 using UnityEngine;
-using YG;
 
 namespace HealthOfObjects
 {
@@ -11,9 +10,7 @@ namespace HealthOfObjects
 
         private ArmyManager _armyManager;
 
-        private int UnitsCount => _armyManager.GetUnits().Count();
-
-        [SerializeField] private int _rewardId;
+        private int UnitsCount => _armyManager.GetUnits().Count();      
 
         private void Awake()
         {
@@ -58,29 +55,9 @@ namespace HealthOfObjects
         {
             if (_currentHealth < _startHealth)
             {
-
                 AddHealth(_startHealth / 100 * percent);
             }
-        }
-
-        public void Revive(int id)
-        {
-            if (id != _rewardId)
-                return;
-
-            Time.timeScale = 1f;
-            AddHealth(_startHealth);
-        }
-
-        private void OnEnable()
-        {
-            YandexGame.RewardVideoEvent += Revive;
-        }
-
-        private void OnDisable()
-        {
-            YandexGame.RewardVideoEvent -= Revive;
-        }
+        }       
     }
 }
 

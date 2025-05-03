@@ -2,6 +2,7 @@ using Managers;
 using System;
 using UI;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace HealthOfObjects
 {
@@ -9,6 +10,7 @@ namespace HealthOfObjects
     {
         [SerializeField] protected int _startHealth;
         protected int _currentHealth;
+        [SerializeField] private UnityEvent OnDeath;
 
         public int CurrentHealth => _currentHealth;
 
@@ -37,8 +39,11 @@ namespace HealthOfObjects
 
             Changed?.Invoke(_currentHealth.ToString());
 
-            if (_currentHealth <= 0)     
+            if (_currentHealth <= 0)
+            {
+                OnDeath?.Invoke();
                 _spawnManager.DisableObject(this);
+            }                    
         }
     }
 }

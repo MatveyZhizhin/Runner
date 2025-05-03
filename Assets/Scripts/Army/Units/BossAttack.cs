@@ -14,6 +14,8 @@ namespace Army.Units
         [SerializeField] private int _damage;
         [SerializeField] private float _fireRate;
 
+        public int Damage { get => _damage; set => _damage = value; }
+
         private bool _isAttacking = false;
 
         private PlayerArmyMover _playerArmy;

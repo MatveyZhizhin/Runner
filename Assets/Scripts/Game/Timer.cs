@@ -43,7 +43,7 @@ namespace Game
             Started?.Invoke();
             _isStarted = true;
         }
-        private void EndTimer()
+        public void EndTimer()
         {
             Ended?.Invoke();
             OnTimerEnd?.Invoke();

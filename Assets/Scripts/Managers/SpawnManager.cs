@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Army;
 using Army.Units;
@@ -99,7 +100,7 @@ namespace Managers
                     _balanceCounter.IncreaseLevelBalance(numberOfCoins.HowMuchWillTheBalanceIncrease);
                     _levelManager.ChangeLevel(true);
                 }
-            }            
+            }     
             
             spawnedObject.gameObject.SetActive(false);
         }

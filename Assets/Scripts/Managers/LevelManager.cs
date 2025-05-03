@@ -1,4 +1,5 @@
-using SkinChangers;
+using Army.Units;
+using HealthOfObjects;
 using System;
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,9 +10,8 @@ namespace Managers
     public class LevelManager : MonoBehaviour
     {
         [field: SerializeField] public int CurrentLevel { get; set; } = 1;
-        [SerializeField] private UnityEvent OnLevelStart;
         [SerializeField] private UnityEvent OnLevelRestart;
-        [SerializeField] private BossSkinChanger _bossSkinChanger;
+        
 
         private bool _isLevelRestarted = true;
 
@@ -19,20 +19,13 @@ namespace Managers
 
         public bool IsBossFightStarted { get; set; }
 
+        [SerializeField] private int _bossAdditionalHealth;
+        [SerializeField] private int _bossAdditionalDamage;
+        [SerializeField] private BossAttack _boss;
+
         public event Action<bool> LevelChanged;
-
-        private SaveManager _saveManager;
-
-        private void Start()
-        {
-            _isLevelRestarted = true;
-            _saveManager.Save();
-        }
-
-        private void Awake()
-        {
-            _saveManager = FindObjectOfType<SaveManager>();
-        }
+        public event Action SceneRestarted;
+        public event Action BossDead;
 
         public void ChangeLevel(bool isBossDead)
         {
@@ -43,19 +36,14 @@ namespace Managers
 
             if (isBossDead)
             {
-                _bossSkinChanger.ChangeCurrentBossIndex();
+                BossDead?.Invoke();
+                _boss.Damage += _bossAdditionalDamage;
+                _boss.GetComponent<Health>().AddHealth(_bossAdditionalHealth);
             }
 
             LevelChanged?.Invoke(isBossDead);
 
             _isLevelRestarted = false;
-            _saveManager.Save();
-        }
-
-        public void StartLevel()
-        {
-            OnLevelStart?.Invoke();
-            _saveManager.Save();
         }
 
         public void RestartLevel()
@@ -63,13 +51,12 @@ namespace Managers
             if (IsBossFightStarted)
                 return;
 
-            _saveManager.Save();
-            OnLevelRestart?.Invoke();
-            Time.timeScale = 0f;          
+            OnLevelRestart?.Invoke();         
         }
 
         public void RestartScene(int index)
         {
+            SceneRestarted?.Invoke();
             SceneManager.LoadScene(index);
         }
     }

@@ -22,6 +22,8 @@ namespace YG
         public bool IsLevelRestarted = false;
         public long Balance = 0;
         public int CurrentBossIndex = 0;
+        public int[] SpawnableArmyMinimumHealths = new int[30];
+        public int[] SpawnableArmyMaximumHealths = new int[30];
 
         // ...
 

@@ -1,4 +1,5 @@
 using Balance;
+using HealthOfObjects;
 using Road;
 using Road.SpawnOfObjects;
 using SkinChangers;
@@ -14,7 +15,8 @@ namespace Managers
         private RoadGenerator _roadGenerator;
         private BalanceCounter _balanceCounter;
 
-        [SerializeField] private BossSkinChanger _bossSkinChanger;
+        private BossSkinChanger _bossSkinChanger;
+        private SpawnableArmyHealth[] _spawnableArmyHealths;
 
         private void Awake()
         {
@@ -30,10 +32,12 @@ namespace Managers
             if (Input.GetKeyDown(KeyCode.Alpha1))
                 ResetProgress();
         }
-
-        public void SetBossSkinChanger(BossSkinChanger bossSkinChanger)
+         
+        private void Start()
         {
-            _bossSkinChanger = bossSkinChanger;
+            _bossSkinChanger = FindObjectOfType<BossSkinChanger>();
+            _spawnableArmyHealths = FindObjectsOfType<SpawnableArmyHealth>();
+            LoadValuesOfSpawnedObjects();
         }
 
         public void Save()
@@ -43,6 +47,12 @@ namespace Managers
             for (int i = 0; i < spawnedTypes.Length; i++)
             {
                 YandexGame.savesData.SpawnableTypes[i] = (int)spawnedTypes[i];
+            }
+
+            for (int i = 0; i < _spawnableArmyHealths.Length; i++)
+            {
+                YandexGame.savesData.SpawnableArmyMaximumHealths[i] = _spawnableArmyHealths[i].MaximumStartHealth;
+                YandexGame.savesData.SpawnableArmyMinimumHealths[i] = _spawnableArmyHealths[i].MinimumStartHealth;
             }
 
             YandexGame.savesData.IsLevelRestarted = _levelManager.IsLevelRestarted;
@@ -64,15 +74,34 @@ namespace Managers
             _spawnManager.SetSpawnableTypes(spawnableTypes);
 
             _levelManager.IsLevelRestarted = YandexGame.savesData.IsLevelRestarted;
+            _balanceCounter.Balance = YandexGame.savesData.Balance;           
+        }
+
+        private void LoadValuesOfSpawnedObjects()
+        {
             _bossSkinChanger.CurrentBossIndex = YandexGame.savesData.CurrentBossIndex;
-            _balanceCounter.Balance = YandexGame.savesData.Balance;
+
+            for (int i = 0; i < _spawnableArmyHealths.Length; i++)
+            {
+                _spawnableArmyHealths[i].MaximumStartHealth = YandexGame.savesData.SpawnableArmyMaximumHealths[i];
+                _spawnableArmyHealths[i].MinimumStartHealth = YandexGame.savesData.SpawnableArmyMinimumHealths[i];
+            }
         }
 
         private void ResetProgress()
         {
-            _levelManager.IsLevelRestarted = false;
             YandexGame.ResetSaveProgress();
-            Save();
+            YandexGame.SaveProgress();
+        }
+
+        private void OnEnable()
+        {
+            _levelManager.SceneRestarted += Save;
+        }
+
+        private void OnDisable()
+        {
+            _levelManager.SceneRestarted -= Save;
         }
     }
 }

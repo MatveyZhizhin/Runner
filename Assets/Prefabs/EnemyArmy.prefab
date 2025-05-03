@@ -24,13 +24,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2970605837794130840}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: -0, y: 0.7071058, z: -0, w: 0.70710784}
   m_LocalPosition: {x: 0, y: 0.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4440964353344795564}
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &3572521259788022231
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,6 +313,7 @@ GameObject:
   - component: {fileID: 7413381427534794401}
   - component: {fileID: 3097602469047180335}
   - component: {fileID: 8845833268124342344}
+  - component: {fileID: -9188908556913747571}
   m_Layer: 6
   m_Name: EnemyArmy
   m_TagString: Untagged
@@ -350,7 +351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d24c8bb293216a24788fd824e79beb18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _unitPrefab: {fileID: 5067933342262126569, guid: 21f42474ee4db6f4faa0d38fac75e261, type: 3}
+  _unitPrefab: {fileID: 2569033972136433629, guid: 55357704e35e4f946b33a44ae450506c, type: 3}
   _spawnPoint: {fileID: 658818563328725282}
   _maximumAmountOfUnitsInRow: 5
   _gapBetweenUnits: 1
@@ -368,22 +369,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startHealth: 0
-  OnDeath:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7045081604659195298}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   _healthPerUnit: 100
+  _rewardId: 0
   _minimumStartHealth: 1000
   _maximumStartHealth: 550
 --- !u!114 &1895619733719256944
@@ -440,15 +427,28 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7045081604659195298}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 56681c7d901d1bf418fe102c72b75068, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 5
+  _damage: 1
   _attackDistance: 12.88
   _attackRate: 0.1
   _attackableObjects:
     serializedVersion: 2
     m_Bits: 64
   _attackPoint: {fileID: 5610184382185957602}
+--- !u!114 &-9188908556913747571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7045081604659195298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d83ff7d037f68146a672d8876ce6186, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _howMuchWillTheBalanceIncrease: 10

@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Game;
 
-namespace UI
+namespace Assets.Scripts.UI
 {
     [RequireComponent(typeof(Timer))]
     public class TimerView : MonoBehaviour
